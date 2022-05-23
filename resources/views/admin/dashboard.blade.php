@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-<div class="pagetitle">
+  <div class="pagetitle">
     <h1>Dashboard</h1>
     <nav>
       <ol class="breadcrumb">

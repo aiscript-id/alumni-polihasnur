@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\ProdiController as AdminProdiController;
+use App\Http\Controllers\Admin\TracerController as AdminTracerController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
@@ -26,7 +28,16 @@ Auth::routes();
 // after authentication, redirect to home page
 Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
+
+    // user section
     Route::resource('users', AdminUserController::class);
+    Route::get('users/{user}/verify', [AdminUserController::class, 'verify'])->name('admin.user.verify');
+
+    // prodi section
+    Route::resource('prodi', AdminProdiController::class);
+
+    // tracer Section
+    Route::resource('tracer', AdminTracerController::class);
 });
 
 // for role user

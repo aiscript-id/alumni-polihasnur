@@ -20,10 +20,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'username',
+        // must be filled
+        'name', 'email', 'password', 'username', 'avatar', 'is_verified',
+        // additional
+        'gender', 'born_place', 'born_date', 'prodi_id', 
     ];
 
     /**
@@ -47,5 +47,10 @@ class User extends Authenticatable
 
     public function getGetAvatarAttribute() {
         return $this->avatar ? asset($this->avatar) : 'https://ui-avatars.com/api/?background=4B49AC&color=fff&name=' . $this->name;;
+    }
+
+    public function prodi()
+    {
+        return $this->belongsTo(Prodi::class, 'prodi_id');
     }
 }
