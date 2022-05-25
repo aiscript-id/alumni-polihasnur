@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Prodi::class, 'prodi_id');
     }
+
+    public function tracer_user()
+    {
+        return $this->hasMany(TracerUser::class, 'user_id');
+    }
 }

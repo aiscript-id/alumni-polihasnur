@@ -32,6 +32,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Tanggal</th>
+                                        <th>Publish</th>
                                         <th class="text-right">Aksi</th>
                                     </tr>
                                 </thead>
