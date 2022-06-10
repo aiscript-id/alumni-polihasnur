@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tracer;
+use App\Models\TracerUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Js;
 
 class TracerController extends Controller
 {
@@ -72,7 +74,18 @@ class TracerController extends Controller
      */
     public function show($id)
     {
-        //
+        $tracer = Tracer::findOrFail($id);
+        $tracer_users = $tracer->tracer_user()->get();
+        // return response()->json($tracer);
+        return view('admin.tracer.show', compact('tracer', 'tracer_users'));
+    }
+
+    public function detail($tracer_user)
+    {
+        $tracer_user = TracerUser::findOrFail($tracer_user);
+        $tracer = $tracer_user->tracer;
+        // return response()->json($tracer_user);
+        return view('admin.tracer.detail', compact('tracer_user', 'tracer'));
     }
 
     /**

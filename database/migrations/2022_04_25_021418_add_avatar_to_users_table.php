@@ -15,6 +15,10 @@ class AddAvatarToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->text('avatar')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('company')->nullable();
+            $table->string('position')->nullable();
+            $table->text('address')->nullable();
         });
     }
 
@@ -27,6 +31,11 @@ class AddAvatarToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('avatar');
+            $table->dropColumn('whatsapp');
+            $table->dropColumn('company');
+            $table->dropColumn('position');
+            $table->dropColumn('address');
+
         });
     }
 }

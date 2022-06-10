@@ -23,7 +23,7 @@ class User extends Authenticatable
         // must be filled
         'name', 'email', 'password', 'username', 'avatar', 'is_verified',
         // additional
-        'gender', 'born_place', 'born_date', 'prodi_id', 
+        'gender', 'born_place', 'born_date', 'prodi_id', 'whatsapp', 'company', 'position'
     ];
 
     /**

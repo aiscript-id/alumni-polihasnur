@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Tracer extends Model
 {
-    protected $fillable = ['name', 'slug', 'start_date', 'end_date', 'status', 'description'];
+    protected $fillable = ['name', 'slug', 'start_date', 'end_date', 'publish', 'description'];
     use HasFactory;
 
     public function getGetDateAttribute()
@@ -21,7 +21,7 @@ class Tracer extends Model
 
     public function scopeActive()
     {
-        return $this->where('status', 1)->orderBy('start_date', 'desc');
+        return $this->where('publish', 1)->orderBy('start_date', 'desc');
     }
 
     public function tracer_user()

@@ -39,7 +39,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile') }}">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
               </a>
@@ -79,9 +79,15 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('user.tracer.*') ? 'active' : '' }} " href="{{ route('user.tracer') }}">
+        <a class="nav-link {{ request()->routeIs('user.tracer*') ? 'active' : '' }} " href="{{ route('user.tracer') }}">
           <i class="bi bi-pie-chart"></i>
           <span>Tracer Study</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('user.profile') ? 'active' : '' }} " href="{{ route('user.profile') }}">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
         </a>
       </li>
     </ul>

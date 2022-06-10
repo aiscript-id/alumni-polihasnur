@@ -28,7 +28,8 @@ Auth::routes();
 
 // after authentication, redirect to home page
 Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin');
+    Route::get('dashboard', [AdminController::class, 'index'])->name('admin');
+    Route::put('publish', [AdminController::class, 'publish'])->name('admin.publish');
 
     // user section
     Route::resource('users', AdminUserController::class);
@@ -39,14 +40,19 @@ Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
 
     // tracer Section
     Route::resource('tracer', AdminTracerController::class);
+    Route::get('tracer/detail/{tracer_user}', [AdminTracerController::class, 'detail'])->name('admin.tracer.detail');
 });
 
 // for role user
 Route::middleware('role:user')->prefix('user')->group(function() {
     Route::get('/dashboard', [UserController::class, 'index'])->name('user');
+    // profile
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+    Route::put('/profile', [UserController::class, 'update'])->name('user.profile.update');
+    Route::put('/profile/password', [UserController::class, 'updatePassword'])->name('user.password.update');
 
     // tracer
-    Route::get('tracer', [TracerController::class, 'tracer'])->name('user.tracer');
+    Route::get('tracer', [TracerController::class, 'index'])->name('user.tracer');
     Route::get('tracer/{slug}', [TracerController::class, 'tracer'])->name('user.tracer.show');
     Route::get('tracer/{slug}/section-a', [TracerController::class, 'section_a'])->name('user.tracer.section-a');
     Route::put('tracer/{id}/section-a/update', [TracerController::class, 'section_a'])->name('user.tracer.section-a.update');

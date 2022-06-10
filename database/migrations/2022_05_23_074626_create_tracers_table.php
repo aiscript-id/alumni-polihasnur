@@ -19,7 +19,7 @@ class CreateTracersTable extends Migration
             $table->string('slug');
             $table->date('start_date');
             $table->date('end_date');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('publish')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();
         });

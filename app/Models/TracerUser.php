@@ -38,7 +38,12 @@ class TracerUser extends Model
         return $progress;
     }
 
-    // get joined user
+    // get jsubmit_date
+    public function getGetSubmitDateAttribute()
+    {
+        $date = @$this->submit_date ? date('d F Y', strtotime($this->submit_date)) : '-';
+        return $date;
+    }
 
 
 }

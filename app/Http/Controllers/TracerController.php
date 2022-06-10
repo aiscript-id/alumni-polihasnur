@@ -8,6 +8,7 @@ use App\Models\SectionB;
 use App\Models\SectionC;
 use App\Models\SectionD;
 use App\Models\SectionE;
+use App\Models\SectionF;
 use App\Models\Tracer;
 use App\Models\TracerUser;
 use Illuminate\Http\Request;
@@ -16,13 +17,30 @@ use Illuminate\Support\Facades\DB;
 
 class TracerController extends Controller
 {
+    public function index()
+    {
+        $user = Auth::user();
+        $tracers = $user->tracer_user->load('tracer');
+        // return response()->json($tracers);
+
+        return view('user.tracer.index', compact('user', 'tracers'));
+    }
+
+
     public function tracer($slug)
     {
         $tracer = Tracer::where('slug', $slug)->first();
         $tracerUser = $this->createTracerUser($tracer);
         $progress = $tracerUser->progress;
 
-        return view('user.tracer.index', compact('tracer', 'tracerUser', 'progress'));
+        if ($tracerUser->complete != 1 && $progress == 100) {
+            $tracerUser->update([
+                'submit_date'   => now(),
+                'complete'      => 1
+            ]);
+        }
+
+        return view('user.tracer.show', compact('tracer', 'tracerUser', 'progress'));
     }
 
 
@@ -40,7 +58,7 @@ class TracerController extends Controller
         return $tracerUser;
     }
 
-    public function sectioe(Request $request, $slug)
+    public function section_a(Request $request, $slug)
     {
         if($request->isMethod('put')) {
             $tracerUser = $this->section_update($request, $request->id, 'section_a', 15);
@@ -131,7 +149,8 @@ class TracerController extends Controller
     public function section_e(Request $request, $slug)
     {
         if($request->isMethod('put')) {
-            $tracerUser = $this->section_update($request, $request->id, 'section_e', 7);
+            $question = (count($request->except('_token', '_method')));
+            $tracerUser = $this->section_update($request, $request->id, 'section_e', $question);
             return redirect()->route('user.tracer.show', $tracerUser->tracer->slug);
         }
 
@@ -142,6 +161,23 @@ class TracerController extends Controller
             ->firstOrCreate(['tracer_user_id' => $tracerUser->id,]);
 
         return view('user.tracer.section.e', compact('tracer', 'tracerUser', 'section'));
+    }
+
+    public function section_f(Request $request, $slug)
+    {
+        if($request->isMethod('put')) {
+            $question = (count($request->except('_token', '_method')));
+            $tracerUser = $this->section_update($request, $request->id, 'section_f', $question);
+            return redirect()->route('user.tracer.show', $tracerUser->tracer->slug);
+        }
+
+        $tracer = Tracer::where('slug', $slug)->first();
+        $tracerUser = $this->createTracerUser($tracer);
+
+        $section = SectionF::where('tracer_user_id', $tracerUser->id)
+            ->firstOrCreate(['tracer_user_id' => $tracerUser->id,]);
+
+        return view('user.tracer.section.f', compact('tracer', 'tracerUser', 'section'));
     }
 
     public function section_update(Request $request, $id, $table, $question)

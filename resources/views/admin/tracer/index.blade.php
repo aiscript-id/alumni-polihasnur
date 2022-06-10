@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Tracer Study</h4>
                         <div class="table-responsive">
-                            <table class="table" id="datatable">
+                            <table class="table nowrap" id="datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -42,10 +42,22 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $tracer->name }}</td>
                                             <td>{{ $tracer->getDate }}</td>
+                                            <td class="text-center">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        {{-- <i class="input-helper"></i> --}}
+                                                    </label>
+                                                    <input type="checkbox" id="publish-{{ $tracer->id }}" class="form-check-input" {{ (@$tracer->publish == 1) ? 'checked' : '' }} onchange="publish({{ $tracer->id }})">
+                                                </div>
+                                            </td>
                                             
                                             <td class="text-right">
+                                                {{-- button detail --}}
+                                                <a href="{{ route('tracer.show', $tracer->id) }}" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-eye"></i>Lihat Hasil
+                                                </a>
                                                 {{-- button edit modal --}}
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-edit-{{ $tracer->id }}">
+                                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modal-edit-{{ $tracer->id }}">
                                                     <i class="fa fa-edit"></i>
                                                     Edit
                                                 </button>
@@ -106,7 +118,7 @@
                             <label for="name">Deskripsi</label>
                             <textarea name="description" id="description" cols="2" rows="2" class="form-control" placeholder="Deskripsi"></textarea>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-2">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -152,7 +164,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </form>
@@ -161,6 +173,30 @@
             </div>
         </div>
     @endforeach
+
+    @push('script')    
+    <script>
+        function publish(id) {
+            $.ajax({
+                url: "{{ route('admin.publish') }}",
+                type: "PUT",
+                data: {
+                id: id,
+                table:"tracers",
+                publish: $('#publish-'+id).prop('checked') ? 1 : 0,
+                _token: "{{ csrf_token() }}"
+                },
+                success: function(data) {
+                if (data == 1) {
+                    toastr.success('Tracer Study published');
+                } else {
+                    toastr.success('Tracer Study unpublished');
+                }
+                }
+            });
+        }
+    </script>
+    @endpush
 
 
 
