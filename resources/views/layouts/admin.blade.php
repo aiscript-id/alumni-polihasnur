@@ -270,6 +270,13 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('job.*') ? 'active' : '' }}" href="{{ route('job.index') }}">
+          <i class="bi bi-person-badge"></i>
+          <span>Pekerjaan</span>
+          </a>
+        </li>
+
 
     </ul>
 

@@ -58,4 +58,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(TracerUser::class, 'user_id');
     }
+
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class, 'user_id');
+    }
 }

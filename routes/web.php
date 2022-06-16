@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\ProdiController as AdminProdiController;
 use App\Http\Controllers\Admin\TracerController as AdminTracerController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\JobController as AdminJobController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\TracerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +43,9 @@ Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
     // tracer Section
     Route::resource('tracer', AdminTracerController::class);
     Route::get('tracer/detail/{tracer_user}', [AdminTracerController::class, 'detail'])->name('admin.tracer.detail');
+
+    // job section
+    Route::resource('job', AdminJobController::class);
 });
 
 // for role user
@@ -72,6 +77,13 @@ Route::middleware('role:user')->prefix('user')->group(function() {
     Route::get('tracer/{slug}/section-f', [TracerController::class, 'section_f'])->name('user.tracer.section-f');
     Route::put('tracer/{id}/section-f/update', [TracerController::class, 'section_f'])->name('user.tracer.section-f.update');
 
+    Route::get('job', [JobController::class, 'index'])->name('user.job');
+    Route::get('job/create', [JobController::class, 'create'])->name('user.job.create');
+    Route::post('job/store', [JobController::class, 'store'])->name('user.job.store');
+    Route::get('job/{id}', [JobController::class, 'show'])->name('user.job.show');
+    Route::get('job/{id}/edit', [JobController::class, 'edit'])->name('user.job.edit');
+    Route::put('job/{id}/update', [JobController::class, 'update'])->name('user.job.update');
+    Route::delete('job/{id}/destroy', [JobController::class, 'destroy'])->name('user.job.destroy');
 
 });
 

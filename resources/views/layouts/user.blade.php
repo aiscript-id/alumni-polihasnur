@@ -85,6 +85,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('user.job*') ? 'active' : '' }} " href="{{ route('user.job') }}">
+          <i class="bi bi-person-badge"></i>
+          <span>Pekerjaan</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('user.profile') ? 'active' : '' }} " href="{{ route('user.profile') }}">
           <i class="bi bi-person"></i>
           <span>Profile</span>

@@ -48,14 +48,14 @@
                                     <div class="col-lg-3 col-md-4 label ">Nama Lengkap</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Instansi/Perusahaan</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->company ?? '-'}}</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Posisi</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->position ?? '-' }}</div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Telepon/Whatsapp</div>
                                     <div class="col-lg-9 col-md-8">{{ $user->whatsapp ?? '-' }}</div>
@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">
+                                    {{-- <div class="row mb-3">
                                         <label for="company" class="col-md-4 col-lg-3 col-form-label">Instansi/Perusahaan</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="company" type="text" class="form-control" id="company" value="{{ $user->company }}">
@@ -113,7 +113,7 @@
                                         <div class="col-md-8 col-lg-9">
                                             <input name="position" type="text" class="form-control" id="position" value="{{ $user->position }}">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row mb-3">
                                         <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Whatsapp/Telpon</label>
                                         <div class="col-md-8 col-lg-9">
