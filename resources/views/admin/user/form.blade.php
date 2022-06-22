@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="pagetitle">
-        <h1>Form User</h1>
+        <h1>Form Data Alumni</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
@@ -60,6 +60,40 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="angkatan">Angkatan</label>
+                                    <input type="text" name="angkatan" id="angkatan" class="form-control @error('angkatan') is-invalid @enderror" value="{{ $user->angkatan ?? old('angkatan') }}">
+                                    @error('angkatan')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tahun_masuk">Tahun Masuk</label>
+                                    <input type="text" name="tahun_masuk" id="tahun_masuk" class="form-control @error('tahun_masuk') is-invalid @enderror" value="{{ $user->tahun_masuk ?? old('tahun_masuk') }}">
+                                    @error('tahun_masuk')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tahun_masuk">Tahun Lulus</label>
+                                    <input type="text" name="tahun_lulus" id="tahun_lulus" class="form-control @error('tahun_lulus') is-invalid @enderror" value="{{ $user->tahun_lulus ?? old('tahun_lulus') }}">
+                                    @error('tahun_lulus')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="username">NIM / Username</label>
                                     <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ $user->username ?? old('username') }}">
                                     @error('username')
@@ -102,7 +136,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="role">Role</label>
                                     <select name="role" id="role" class="form-control @error('role') is-invalid @enderror" required>
@@ -116,10 +150,12 @@
                                         </div>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
+                            <input type="hidden" name="role" value="user">
                         </div>
                         
 
+                        <hr>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-save"></i>

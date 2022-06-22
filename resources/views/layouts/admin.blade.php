@@ -251,7 +251,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
             <i class="bi bi-people"></i>
-            <span>User</span>
+            <span>Data Alumni</span>
             </a>
         </li>
 
@@ -267,6 +267,14 @@
           <a class="nav-link {{ request()->routeIs('tracer.*') ? 'active' : '' }}" href="{{ route('tracer.index') }}">
           <i class="bi bi-pie-chart"></i>
           <span>Tracer Study</span>
+          </a>
+        </li>
+
+         
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('job.*') ? 'active' : '' }}" href="{{ route('job.statistic') }}">
+          <i class="bi bi-person-badge"></i>
+          <span>Pekerjaan Alumni</span>
           </a>
         </li>
 

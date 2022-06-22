@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('content')
     <div class="pagetitle">
-        <h1>User</h1>
+        <h1>Data Alumni</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">User</li>
+            <li class="breadcrumb-item active">Data Alumni</li>
         </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -22,7 +22,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">User Account</h4>
+                        <h4 class="card-title">Data Akun Alumni</h4>
                         <div class="table-responsive nowrap">
                             <table class="table" id="datatable">
                                 <thead>

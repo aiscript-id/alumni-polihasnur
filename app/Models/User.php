@@ -23,7 +23,7 @@ class User extends Authenticatable
         // must be filled
         'name', 'email', 'password', 'username', 'avatar', 'is_verified',
         // additional
-        'gender', 'born_place', 'born_date', 'prodi_id', 'whatsapp', 'company', 'position'
+        'gender', 'born_place', 'born_date', 'prodi_id', 'whatsapp', 'company', 'position', 'angkatan', 'tahun_masuk', 'tahun_lulus', 'address'
     ];
 
     /**
@@ -57,5 +57,16 @@ class User extends Authenticatable
     public function tracer_user()
     {
         return $this->hasMany(TracerUser::class, 'user_id');
+    }
+
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class, 'user_id');
+    }
+
+    public function lastJob()
+    {
+        return $this->hasOne(Job::class, 'user_id')->latest();
     }
 }

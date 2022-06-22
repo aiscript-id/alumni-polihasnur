@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::role('user')->paginate(10);
+        $users = User::role('user')->latest()->paginate(10);
         return view('admin.user.index', compact('users'));
     }
 
@@ -59,6 +59,9 @@ class UserController extends Controller
             'avatar' => 'https://ui-avatars.com/api/?background=4B49AC&color=fff&name=' . $request->name,
             'is_verified' => 1,
             'prodi_id' => $request->prodi_id,
+            'angkatan' => $request->angkatan,
+            'tahun_masuk' => $request->tahun_masuk,
+            'tahun_lulus' => $request->tahun_lulus,
         ]);
 
         $role = Role::findbyName($request->role);
@@ -119,6 +122,9 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->prodi_id = $request->prodi_id;
+        $user->angkatan = $request->angkatan;
+        $user->tahun_masuk = $request->tahun_masuk;
+        $user->tahun_lulus = $request->tahun_lulus;
         $user->save();
 
         $role = Role::findbyName($request->role);

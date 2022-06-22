@@ -32,7 +32,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Jumlah Lulusan</th>
+                                        <th>Jumlah Alumni</th>
                                         <th class="text-right">Aksi</th>
                                     </tr>
                                 </thead>
@@ -41,7 +41,9 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $prodi->name }}</td>
-                                            <td>{{ $prodi->users->count() }}</td>
+                                            <td>
+                                                {{ $prodi->users->count() }}
+                                            </td>
                                             
                                             <td class="text-right">
                                                 {{-- button edit modal --}}
