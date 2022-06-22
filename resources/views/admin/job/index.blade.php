@@ -12,6 +12,11 @@
 
     <section class="section dashboard">
         <div class="row">
+            <div class="col-md-12">
+                {{-- button --}}
+                <a href="{{ route('job.statistic') }}" class="btn btn-sm btn-outline-primary mr-2">Statistik Pekerjaan Alumni</a>
+                <a href="{{ route('job.index') }}" class="btn btn-sm btn-primary">Tabel Pekerjaan Alumni</a>
+            </div>
             {{-- table --}}
             <div class="col-md-12">
                 <div class="text-right my-3">

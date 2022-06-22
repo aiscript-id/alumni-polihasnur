@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
+use App\Models\Prodi;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -13,6 +15,7 @@ class JobController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $jobs = Job::all();
@@ -83,5 +86,15 @@ class JobController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function statistic(Request $request)
+    {
+        $prodis = Prodi::all();
+        $jobs = Job::chartJob();
+
+        // return response()->json($jobs);
+
+        return view('admin.job.statistic', compact('prodis', 'jobs'));
     }
 }

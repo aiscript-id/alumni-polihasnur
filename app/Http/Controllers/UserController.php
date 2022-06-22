@@ -41,6 +41,9 @@ class UserController extends Controller
             // 'position' => $request->position,
             'address' => $request->address,
             'prodi_id' => $request->prodi_id,
+            'angkatan' => $request->angkatan,
+            'tahun_masuk' => $request->tahun_masuk,
+            'tahun_lulus' => $request->tahun_lulus,
         ];
 
         $user->update($data);

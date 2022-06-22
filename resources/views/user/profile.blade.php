@@ -18,6 +18,9 @@
                         <img src="{{ $user->getAvatar }}" alt="Profile" class="rounded-circle">
                         <h2>{{ $user->name }}</h2>
                         <h3>{{ $user->username }}</h3>
+                        <p class="text-center">Alumni Angkatan {{ $user->angkatan }} <br>
+                            <small class="text-sm text-muted">{{ $user->tahun_masuk }} - {{ $user->tahun_lulus }}</small>
+                        </p>
                         <div class="social-links mt-2 text-center">
                             <a href="#" class="twitter"><i class="bi bi-google"></i></a>
                             <a href="#" class="whatsapp"><i class="bi bi-whatsapp"></i></a>
@@ -115,17 +118,24 @@
                                         </div>
                                     </div> --}}
                                     <div class="row mb-3">
-                                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Whatsapp/Telpon</label>
+                                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Angkatan</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="whatsapp" type="text" class="form-control" id="whatsapp" value="{{ $user->whatsapp }}">
+                                            <input name="angkatan" type="text" class="form-control" id="angkatan" value="{{ $user->angkatan }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="address" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
+                                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Tahun Masuk</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="address" value="{{ $user->address }}">
+                                            <input name="tahun_masuk" type="text" class="form-control" id="tahun_masuk" value="{{ $user->tahun_masuk }}">
                                         </div>
-                                    </div>                                    
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Tahun Lulus</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="tahun_lulus" type="text" class="form-control" id="tahun_lulus" value="{{ $user->tahun_lulus }}">
+                                        </div>
+                                    </div>
+                                                                     
                                     {{-- prodi --}}
                                     @if (!@$user->prodi_id)    
                                     <div class="row mb-3">
@@ -140,6 +150,18 @@
                                         </div>
                                     </div>
                                     @endif
+                                    <div class="row mb-3">
+                                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Whatsapp/Telpon</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="whatsapp" type="text" class="form-control" id="whatsapp" value="{{ $user->whatsapp }}">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="address" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="address" type="text" class="form-control" id="address" value="{{ $user->address }}">
+                                        </div>
+                                    </div>   
                                     
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
