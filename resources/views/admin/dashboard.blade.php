@@ -10,7 +10,7 @@
     </nav>
   </div><!-- End Page Title -->
 
-  <section class="section dashboard">
+  <section class="section dashboard d-none">
     <div class="row">
 
       <!-- Left side columns -->

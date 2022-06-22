@@ -10,4 +10,9 @@ class Prodi extends Model
     protected $table = 'prodi';
     protected $fillable = ['name', 'slug', 'description'];
     use HasFactory;
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'prodi_id', 'id');
+    }
 }
