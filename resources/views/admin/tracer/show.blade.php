@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <h4 class="card-title">{{ $tracer->name }}</h4>
                         <div class="table-responsive">
-                            <table class="table nowrap" id="datatable">
+                            <table class="table nowrap datatable" id="datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>

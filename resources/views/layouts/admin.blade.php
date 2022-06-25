@@ -278,6 +278,13 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('job.*') ? 'active' : '' }}" href="{{ route('job.statistic') }}">
+          <i class="bi bi-map"></i>
+          <span>Pemetaan Alumni</span>
+          </a>
+        </li>
+
 
     </ul>
 

@@ -32,7 +32,7 @@
                         <h4 class="card-title">Pekerjaan Alumni</h4>
 
                         <div class="table-responsive">
-                            <table class="table" id="datatable">
+                            <table class="table datatable" id="datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>

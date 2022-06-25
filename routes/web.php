@@ -48,6 +48,13 @@ Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
     // job statistic
     Route::get('job/statistic', [AdminJobController::class, 'statistic'])->name('job.statistic');
     Route::resource('job', AdminJobController::class);
+
+    Route::get('tracer/section-a/{id}', [AdminTracerController::class, 'sectionA'])->name('admin.tracer.section-a');
+    Route::get('tracer/section-b/{id}', [AdminTracerController::class, 'sectionB'])->name('admin.tracer.section-b');
+    Route::get('tracer/section-c/{id}', [AdminTracerController::class, 'sectionC'])->name('admin.tracer.section-c');
+    Route::get('tracer/section-d/{id}', [AdminTracerController::class, 'sectionD'])->name('admin.tracer.section-d');
+    Route::get('tracer/section-e/{id}', [AdminTracerController::class, 'sectionE'])->name('admin.tracer.section-e');
+    Route::get('tracer/section-f/{id}', [AdminTracerController::class, 'sectionF'])->name('admin.tracer.section-f');
 });
 
 // for role user
@@ -86,6 +93,8 @@ Route::middleware('role:user')->prefix('user')->group(function() {
     Route::get('job/{id}/edit', [JobController::class, 'edit'])->name('user.job.edit');
     Route::put('job/{id}/update', [JobController::class, 'update'])->name('user.job.update');
     Route::delete('job/{id}/destroy', [JobController::class, 'destroy'])->name('user.job.destroy');
+
+    Route::get('alumni', [UserController::class, 'alumni'])->name('user.alumni');
 
 });
 

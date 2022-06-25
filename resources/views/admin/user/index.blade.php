@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends((auth()->user()->hasRole(['admin', 'superadmin'])) ? 'layouts.admin' : 'layouts.user')
 @section('content')
     <div class="pagetitle">
         <h1>Data Alumni</h1>
@@ -14,17 +14,19 @@
         <div class="row">
             {{-- table --}}
             <div class="col-md-12">
+                @if (auth()->user()->hasRole(['admin', 'superadmin']))      
                 <div class="text-right my-3">
                     <a href="{{ route('users.create') }}" class="btn btn-primary">
                         <i class="fa fa-plus"></i>
                         Create
                     </a>
                 </div>
+                @endif
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Data Akun Alumni</h4>
                         <div class="table-responsive nowrap">
-                            <table class="table" id="datatable">
+                            <table class="table datatable" id="datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -32,8 +34,11 @@
                                         <th>NIM</th>
                                         <th>Email</th>
                                         <th>Prodi</th>
+                                        @if (auth()->user()->hasRole(['admin', 'superadmin']))    
+
                                         <th class="text-center">Verified</th>
                                         <th class="text-right">Aksi</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +53,7 @@
                                             <td>{{ $user->username }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->prodi->name ?? '-' }}</td>
+                                            @if (auth()->user()->hasRole(['admin', 'superadmin']))   
                                             <td class="text-center">
                                                 @if ($user->is_verified == true)
                                                     {{-- checklist --}}
@@ -68,6 +74,7 @@
                                                     <button class="btn btn-danger btn-sm">Delete</button>
                                                 </form>
                                             </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -3,6 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prodi;
+use App\Models\SectionA;
+use App\Models\SectionB;
+use App\Models\SectionC;
+use App\Models\SectionD;
+use App\Models\SectionE;
+use App\Models\SectionF;
 use App\Models\Tracer;
 use App\Models\TracerUser;
 use Illuminate\Http\Request;
@@ -147,5 +154,96 @@ class TracerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function sectionA($id)
+    {
+        $tracerUser = TracerUser::findOrFail($id);
+        $tracer = $tracerUser->tracer;
+        $section = SectionA::where('tracer_user_id', $tracerUser->id)->first();
+        if (!$section) {
+            $section = new SectionA();
+            $section->tracer_user_id = $tracerUser->id;
+            $section->save();
+        }
+        // return response()->json($section);
+
+        return view('user.tracer.section.a', compact('tracer', 'tracerUser', 'section'));
+    }
+
+    public function sectionB($id)
+    {
+        $tracerUser = TracerUser::findOrFail($id);
+        $tracer = $tracerUser->tracer;
+        $section = SectionB::where('tracer_user_id', $tracerUser->id)->first();
+        if (!$section) {
+            $section = new SectionB();
+            $section->tracer_user_id = $tracerUser->id;
+            $section->save();
+        }
+        $prodis = Prodi::get();
+
+
+        return view('user.tracer.section.b', compact('tracer', 'tracerUser', 'section', 'prodis'));
+    }
+
+    public function sectionC($id)
+    {
+        $tracerUser = TracerUser::findOrFail($id);
+        $tracer = $tracerUser->tracer;
+        $section = SectionC::where('tracer_user_id', $tracerUser->id)->first();
+        if (!$section) {
+            $section = new SectionC();
+            $section->tracer_user_id = $tracerUser->id;
+            $section->save();
+        }
+        // return response()->json($section);
+
+        return view('user.tracer.section.c', compact('tracer', 'tracerUser', 'section'));
+    }
+
+    public function sectionD($id)
+    {
+        $tracerUser = TracerUser::findOrFail($id);
+        $tracer = $tracerUser->tracer;
+        $section = SectionD::where('tracer_user_id', $tracerUser->id)->first();
+        if (!$section) {
+            $section = new SectionD();
+            $section->tracer_user_id = $tracerUser->id;
+            $section->save();
+        }
+        // return response()->json($section);
+
+        return view('user.tracer.section.d', compact('tracer', 'tracerUser', 'section'));
+    }
+
+    public function sectionE($id)
+    {
+        $tracerUser = TracerUser::findOrFail($id);
+        $tracer = $tracerUser->tracer;
+        $section = SectionE::where('tracer_user_id', $tracerUser->id)->first();
+        if (!$section) {
+            $section = new SectionE();
+            $section->tracer_user_id = $tracerUser->id;
+            $section->save();
+        }
+        // return response()->json($section);
+
+        return view('user.tracer.section.e', compact('tracer', 'tracerUser', 'section'));
+    }
+
+    public function sectionF($id)
+    {
+        $tracerUser = TracerUser::findOrFail($id);
+        $tracer = $tracerUser->tracer;
+        $section = SectionF::where('tracer_user_id', $tracerUser->id)->first();
+        if (!$section) {
+            $section = new SectionF();
+            $section->tracer_user_id = $tracerUser->id;
+            $section->save();
+        }
+        // return response()->json($section);
+
+        return view('user.tracer.section.f', compact('tracer', 'tracerUser', 'section'));
     }
 }

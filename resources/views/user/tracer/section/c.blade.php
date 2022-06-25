@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends((auth()->user()->hasRole('user')) ? 'layouts.user' : 'layouts.admin')
 @section('content')
     <div class="pagetitle">
         <h1>Tracer Study</h1>
@@ -410,6 +410,7 @@
                 </div>
 
                 {{-- btn-submit --}}
+                @if (auth()->user()->hasRole('user'))    
                 <div class="text-right">
                     {{-- back --}}
                     <a href="{{ route('user.tracer.show', ['slug' => $tracer->slug]) }}" class="btn btn-warning">
@@ -421,8 +422,17 @@
                         Simpan
                     </button>
                 </div>
-
+                
                 </form>
+                @else 
+                <div class="text-right">
+                    {{-- back --}}
+                    <a href="{{ route('admin.tracer.detail', ['tracer_user' => $tracerUser->id]) }}" class="btn btn-warning">
+                        <i class="fa fa-arrow-left"></i>
+                        Kembali
+                    </a>
+                </div>
+                @endif
             </div>
         </div>
     </section>

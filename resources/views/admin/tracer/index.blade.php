@@ -26,13 +26,13 @@
                     <div class="card-body">
                         <h4 class="card-title">Tracer Study</h4>
                         <div class="table-responsive">
-                            <table class="table nowrap" id="datatable">
+                            <table class="table nowrap datatable" id="datatable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Tanggal</th>
-                                        <th>Publish</th>
+                                        <th>Tampilkan?</th>
                                         <th class="text-right">Aksi</th>
                                     </tr>
                                 </thead>
