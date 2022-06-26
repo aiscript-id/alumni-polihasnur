@@ -97,4 +97,10 @@ class JobController extends Controller
 
         return view('admin.job.statistic', compact('prodis', 'jobs'));
     }
+
+    public function map(Request $request)
+    {
+        $jobs = Job::all();
+        return view('admin.job.map', compact('jobs'));
+    }
 }

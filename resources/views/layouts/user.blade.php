@@ -114,6 +114,8 @@
 
   <!-- ======= Footer ======= -->
   @include('layouts.includes.foot')
+  @stack('scripts')
+
 
 </body>
 

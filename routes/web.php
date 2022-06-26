@@ -47,6 +47,7 @@ Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
     // job section
     // job statistic
     Route::get('job/statistic', [AdminJobController::class, 'statistic'])->name('job.statistic');
+    Route::get('job/map', [AdminJobController::class, 'map'])->name('jobs.map');
     Route::resource('job', AdminJobController::class);
 
     Route::get('tracer/section-a/{id}', [AdminTracerController::class, 'sectionA'])->name('admin.tracer.section-a');

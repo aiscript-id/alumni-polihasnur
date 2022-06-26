@@ -49,16 +49,13 @@ class JobController extends Controller
             'end_date' => 'nullable',
             'status' => 'required',
             'sesuai_prodi' => 'required',
-            'map_link' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
             'description' => 'nullable',
 
         ]);
 
         $data['user_id'] = Auth::user()->id;
-        // $longitude = from map_link
-        $data['longitude'] = substr($data['map_link'], strpos($data['map_link'], '@') + 1, strpos($data['map_link'], ',') - strpos($data['map_link'], '@') - 1);
-        $data['latitude'] = substr($data['map_link'], strpos($data['map_link'], ',') + 1, strpos($data['map_link'], 'z/') - strpos($data['map_link'], ',') - 1);
-        
 
         $job = Job::create($data);
 
@@ -113,15 +110,13 @@ class JobController extends Controller
             'end_date' => 'nullable',
             'status' => 'required',
             'sesuai_prodi' => 'required',
-            'map_link' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
             'description' => 'nullable',
 
         ]);
 
         $data['user_id'] = Auth::user()->id;
-        // $longitude = from map_link
-        $data['longitude'] = substr($data['map_link'], strpos($data['map_link'], '@') + 1, strpos($data['map_link'], ',') - strpos($data['map_link'], '@') - 1);
-        $data['latitude'] = substr($data['map_link'], strpos($data['map_link'], ',') + 1, strpos($data['map_link'], 'z/') - strpos($data['map_link'], ',') - 1);
 
         $job = Job::where('id', $id)->where('user_id', auth()->user()->id)->first();
         if (!$job) {

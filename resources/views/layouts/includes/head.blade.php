@@ -5,6 +5,8 @@
     <title>Tracer Study Polihasnur</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
   
     <!-- Favicons -->
     <link href="{{ asset('') }}/assets/images/polihasnur.png" rel="icon">
@@ -31,6 +33,8 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('nice') }}/assets/css/style.css" rel="stylesheet">
   
+    @yield('styles')
+
     <!-- =======================================================
     * Template Name: NiceAdmin - v2.2.2
     * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
