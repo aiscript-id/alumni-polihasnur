@@ -35,6 +35,9 @@
                                     </a>
                                     <br>
                                 @endforeach
+                                <a href="{{ route('job.statistic') }}" class="btn btn-outline-primary btn-sm btn-block mb-4">
+                                    Tampilkan semua Program Studi
+                                </a>
                             </div>
                             <div class="col-md-8">
                                 {{-- pie chart --}}

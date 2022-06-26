@@ -25,6 +25,7 @@
   <script src="{{ asset('nice') }}/assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="{{ asset('nice') }}/assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="{{ asset('nice') }}/assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('nice') }}/assets/js/main.js"></script>

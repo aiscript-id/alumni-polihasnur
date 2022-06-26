@@ -100,7 +100,8 @@ class JobController extends Controller
 
     public function map(Request $request)
     {
+        $prodis = Prodi::all();
         $jobs = Job::all();
-        return view('admin.job.map', compact('jobs'));
+        return view('admin.job.map', compact('jobs', 'prodis'));
     }
 }
