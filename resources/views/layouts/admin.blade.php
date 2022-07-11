@@ -267,7 +267,7 @@
             {{-- new --}}
             <i class="bi bi-question-square"></i>
             <span>Form Tracer Study</span>
-            <span class="badge badge-pill badge-primary ml-1">New</span>
+            {{-- <span class="badge badge-pill badge-primary ml-1">New</span> --}}
           </a>
         </li>
 
