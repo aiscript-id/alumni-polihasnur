@@ -6,7 +6,7 @@
         <div class="card-body">
             <h4 class="card-title">Pekerjaan Alumni</h4>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <h5 class="card-title">Program Studi</h5>
                     @foreach ($prodis as $prodi)
                         {{-- button --}}
@@ -19,7 +19,7 @@
                         Tampilkan semua Program Studi
                     </a>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     {{-- pie chart --}}
                     <div class="row">
                         <div class="col-md-12">
