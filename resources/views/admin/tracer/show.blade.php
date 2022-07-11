@@ -27,8 +27,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Tanggal Submit</th>
-                                        <th>Progress</th>
+                                        <th>Tanggal Pengerjaan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -37,17 +36,9 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $tracer_user->user->name }}</td>
-                                            <td>{{ $tracer_user->getSubmitDate }}</td>
-                                            <td class="text-center">
-                                                {{-- progress bar --}}
-                                                <div class="progress">
-                                                    <div class="progress-bar progress-bar-striped bg-{{ ($tracer_user->progress == 100) ? 'success' : 'primary' }} progress-bar-primary animated" role="progressbar" style="width: {{ $tracer_user->progress }}%" aria-valuenow="{{ $tracer_user->progress }}" aria-valuemin="0" aria-valuemax="100">
-                                                        {{ $tracer_user->progress }}%
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <td>{{ $tracer_user->created_at }}</td>
                                             <td>
-                                                <a href="{{ route('admin.tracer.detail', ['tracer_user' => $tracer_user->id]) }}" class="btn btn-sm btn-primary">Detail</a>
+                                                <a href="{{ route('tracer.detail', ['tracer_user' => $tracer_user->id]) }}" class="btn btn-sm btn-primary">Detail</a>
                                             </td>
                                         </tr>
                                     @endforeach

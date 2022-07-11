@@ -45,5 +45,10 @@ class TracerUser extends Model
         return $date;
     }
 
+    public function answers()
+    {
+        return $this->hasMany('App\Models\Answer');
+    }
+
 
 }

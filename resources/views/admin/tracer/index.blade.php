@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group d-none">
+                        <div class="form-group">
                             <label for="name">Deskripsi</label>
                             <textarea name="description" id="description" cols="2" rows="2" class="form-control" placeholder="Deskripsi"></textarea>
                         </div>
@@ -164,6 +164,10 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="name">Deskripsi</label>
+                                <textarea name="description" id="description" cols="2" rows="2" class="form-control" placeholder="Deskripsi">{{ $tracer->description }}</textarea>
+                            </div>
                             <div class="form-group mt-2">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
@@ -178,7 +182,7 @@
     <script>
         function publish(id) {
             $.ajax({
-                url: "{{ route('admin.publish') }}",
+                url: "{{ route('admin.tracer.publish') }}",
                 type: "PUT",
                 data: {
                 id: id,
@@ -189,6 +193,10 @@
                 success: function(data) {
                 if (data == 1) {
                     toastr.success('Tracer Study published');
+                    // reload page with delay
+                    setTimeout(function(){
+                        location.reload();
+                    }, 1000);
                 } else {
                     toastr.success('Tracer Study unpublished');
                 }

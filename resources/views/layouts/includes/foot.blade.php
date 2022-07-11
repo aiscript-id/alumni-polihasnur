@@ -1,4 +1,4 @@
-<footer id="footer" class="footer">
+<footer id="footer" class="footer" style="margin-left: 0px!important">
     <div class="copyright">
       &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
@@ -26,17 +26,20 @@
   <script src="{{ asset('nice') }}/assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="{{ asset('nice') }}/assets/vendor/php-email-form/validate.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+  
+  
   <!-- Template Main JS File -->
   <script src="{{ asset('nice') }}/assets/js/main.js"></script>
-
+  
   @jquery
   @toastr_js
   @toastr_render
-
-
+  
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js" integrity="sha256-eEa1kEtgK9ZL6h60VXwDsJ2rxYCwfxi40VZ9E0XwoEA=" crossorigin="anonymous"></script>
   <script type="text/javascript">
  
     $('.show_confirm').click(function(event) {
@@ -62,5 +65,18 @@
             tooltip.tooltip();
         }
     })
+  </script>
+
+  {{-- script untuk tokenfield --}}
+  <script>
+    $(document).ready(function() {
+      $('#optional').tokenfield({
+        autocomplete: {
+          // source: ['red', 'blue', 'green', 'yellow', 'violet', 'brown', 'purple', 'black', 'white'],
+          delay: 100
+        },
+        showAutocompleteOnFocus: true
+      });
+    });
   </script>
 

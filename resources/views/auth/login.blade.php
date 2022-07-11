@@ -12,7 +12,7 @@
             
             <div class="card-body">
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo w-auto">
+                <a href="{{ asset('/') }}" class="logo w-auto">
                   <img src="{{ asset('assets/images/polihasnur.png') }}" style="max-height: 100px" alt="">
                   {{-- <span class="d-none d-lg-block">Alumni Polihasnur</span> --}}
                 </a>
@@ -64,7 +64,7 @@
                   <button class="btn btn-primary w-100" type="submit">Login</button>
                 </div>
                 <div class="col-12">
-                  <p class="small mb-0">Belum Memiliki Akun? <a href="pages-register.html">Buat Akun</a></p>
+                  <p class="small mb-0">Belum Memiliki Akun? <a href="{{ route('register') }}">Buat Akun</a></p>
                 </div>
                 <div class="col-12 d-none">
                     @if (Route::has('password.request'))

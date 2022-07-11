@@ -28,7 +28,7 @@
 
     {{-- SweetAlert --}}
     <link rel="stylesheet" href="{{ asset('vendors/sweetalert/sweetalert.min.js') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
   
     <!-- Template Main CSS File -->
     <link href="{{ asset('nice') }}/assets/css/style.css" rel="stylesheet">

@@ -15,6 +15,11 @@ class JobController extends Controller
      */
     public function index()
     {
+        // return if user not verified
+        if (!Auth::user()->is_verified) {
+            toastr()->error('Akun Anda Belum terverifikasi oleh admin. Silahkan tunggu beberapa saat');
+            return redirect()->back();
+        }
         $jobs = Auth::user()->jobs;
         return view('user.job.index', compact('jobs'));
     }

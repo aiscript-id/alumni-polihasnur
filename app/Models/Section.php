@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'code',
+        'name',
+    ];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 }

@@ -427,7 +427,7 @@
                 @else 
                 <div class="text-right">
                     {{-- back --}}
-                    <a href="{{ route('admin.tracer.detail', ['tracer_user' => $tracerUser->id]) }}" class="btn btn-warning">
+                    <a href="{{ route('tracer.detail', ['tracer_user' => $tracerUser->id]) }}" class="btn btn-warning">
                         <i class="fa fa-arrow-left"></i>
                         Kembali
                     </a>

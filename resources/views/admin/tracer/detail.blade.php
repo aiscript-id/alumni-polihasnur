@@ -17,109 +17,26 @@
                 {{-- back --}}
                 <a href="{{ route('tracer.show', ['tracer' => $tracer->id]) }}" class="btn btn-sm btn-secondary">Kembali</a>
             </div>
-            <div class="col-xxl-4 col-md-6">
-                <div class="card">
-                    <div class="card-body py-3">
-                        <p class="small p-0">Data Pribadi <br> {{ $tracer_user->section_a }} <small>%</small></p>
-                        {{-- progress --}}
-                        <div class="progress mb-2">
-                            <div class="progress-bar progress-bar-sm progress-bar-striped bg-{{ ($tracer_user->section_a == 100) ? 'success' : 'primary' }} progress-bar-primary animated" role="progressbar" style="width: {{ $tracer_user->section_a }}%" aria-valuenow="{{ $tracer_user->section_a }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $tracer_user->section_a }}
-                            </div>
-                        </div>
-                        <a href="{{ route('admin.tracer.section-a', ['id' => $tracer_user->id]) }}" class="btn btn-outline-primary btn-sm">
-                            Lihat Data
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+            @foreach ($sections as $section)    
             <div class="col-xxl-4 col-md-6">
                 <div class="card info-card sales-card">
                     <div class="card-body py-3">
-                        <p class="small p-0">Riwayat Pendidikan <br> {{ $tracer_user->section_b }} <small>%</small></p>
-                        {{-- progress --}}
-                        <div class="progress mb-2">
-                            <div class="progress-bar progress-bar-sm progress-bar-striped bg-{{ ($tracer_user->section_b == 100) ? 'success' : 'primary' }} progress-bar-primary animated" role="progressbar" style="width: {{ $tracer_user->section_b }}%" aria-valuenow="{{ $tracer_user->section_b }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $tracer_user->section_b }}
+                        <div class="align-items-center">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                            <p class="text-sm mb-0">{{ $section->name }}</p>
+                            <span class="text-muted small pt-2">{{ $section->questions->count() }} Pertanyaan</span>
                             </div>
                         </div>
-                        <a href="{{ route('admin.tracer.section-b', ['id' => $tracer_user->id]) }}" class="btn btn-outline-primary btn-sm">
+                        {{-- button update data --}}
+                        <a href="{{ route('tracer.section', ['id' => $tracer_user->id, 'section' => $section->id]) }}" class="btn btn-block btn-outline-primary btn-sm">
                             Lihat Data
                         </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            @if ($tracer_user->bekerja != 'tidak')    
-            <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
-                    <div class="card-body py-3">
-                        <p class="small p-0">Riwayat Pekerjaan <br> {{ $tracer_user->section_c }} <small>%</small></p>
-                        {{-- progress --}}
-                        <div class="progress mb-2">
-                            <div class="progress-bar progress-bar-sm progress-bar-striped bg-{{ ($tracer_user->section_c == 100) ? 'success' : 'primary' }} progress-bar-primary animated" role="progressbar" style="width: {{ $tracer_user->section_c }}%" aria-valuenow="{{ $tracer_user->section_c }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $tracer_user->section_c }}
-                            </div>
-                        </div>
-                        <a href="{{ route('admin.tracer.section-c', ['id' => $tracer_user->id]) }}" class="btn btn-outline-primary btn-sm">
-                            Lihat Data
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
-                    <div class="card-body py-3">
-                        <p class="small p-0">Relevansi Pekerjaan dan Pendidikan <br> {{ $tracer_user->section_d }} <small>%</small></p>
-                        {{-- progress --}}
-                        <div class="progress mb-2">
-                            <div class="progress-bar progress-bar-sm progress-bar-striped bg-{{ ($tracer_user->section_d == 100) ? 'success' : 'primary' }} progress-bar-primary animated" role="progressbar" style="width: {{ $tracer_user->section_d }}%" aria-valuenow="{{ $tracer_user->section_d }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $tracer_user->section_d }}
-                            </div>
-                        </div>
-                        <a href="{{ route('admin.tracer.section-d', ['id' => $tracer_user->id]) }}" class="btn btn-outline-primary btn-sm">
-                            Lihat Data
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @endif
-
-            <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
-                    <div class="card-body py-3">
-                        <p class="small p-0">Pengalaman Pembelajaran <br> {{ $tracer_user->section_e }} <small>%</small></p>
-                        {{-- progress --}}
-                        <div class="progress mb-2">
-                            <div class="progress-bar progress-bar-sm progress-bar-striped bg-{{ ($tracer_user->section_e == 100) ? 'success' : 'primary' }} progress-bar-primary animated" role="progressbar" style="width: {{ $tracer_user->section_e }}%" aria-valuenow="{{ $tracer_user->section_e }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $tracer_user->section_e }}
-                            </div>
-                        </div>
-                        <a href="{{ route('admin.tracer.section-e', ['id' => $tracer_user->id]) }}" class="btn btn-outline-primary btn-sm">
-                            Lihat Data
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card">
-                    <div class="card-body py-3">
-                        <p class="small p-0">Indikator Kompetensi Lulusan <br> {{ $tracer_user->section_f }} <small>%</small></p>
-                        {{-- progress --}}
-                        <div class="progress mb-2">
-                            <div class="progress-bar progress-bar-sm progress-bar-striped bg-{{ ($tracer_user->section_f == 100) ? 'success' : 'primary' }} progress-bar-primary animated" role="progressbar" style="width: {{ $tracer_user->section_f }}%" aria-valuenow="{{ $tracer_user->section_f }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $tracer_user->section_f }}
-                            </div>
-                        </div>
-                        <a href="{{ route('admin.tracer.section-f', ['id' => $tracer_user->id]) }}" class="btn btn-outline-primary btn-sm">
-                            Lihat Data
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 @endsection

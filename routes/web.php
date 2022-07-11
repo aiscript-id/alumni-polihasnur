@@ -4,7 +4,10 @@ use App\Http\Controllers\Admin\ProdiController as AdminProdiController;
 use App\Http\Controllers\Admin\TracerController as AdminTracerController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\JobController as AdminJobController;
+use App\Http\Controllers\Admin\QuestionController as AdminQuestionController;
+use App\Http\Controllers\Admin\SectionController as AdminSectionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\TracerController;
 use App\Http\Controllers\UserController;
@@ -22,9 +25,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+// home
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/tentang', [HomeController::class, 'tentang'])->name('tentang');
+Route::get('/alumni', [HomeController::class, 'alumni'])->name('alumni');
+Route::get('/alumni/statistik', [HomeController::class, 'alumni_statistik'])->name('alumni.statistik');
+Route::get('/alumni/pekerjaan', [HomeController::class, 'alumni_pekerjaan'])->name('alumni.pekerjaan');
+Route::get('/kontak', [HomeController::class, 'kontak'])->name('kontak');
+Route::get('tracer-study', [HomeController::class, 'tracer_study'])->name('tracer-study')->middleware('auth');
+
 
 Auth::routes();
 
@@ -32,6 +44,7 @@ Auth::routes();
 Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin');
     Route::put('publish', [AdminController::class, 'publish'])->name('admin.publish');
+    Route::put('tracer/publish', [AdminTracerController::class, 'publish'])->name('admin.tracer.publish');
 
     // user section
     Route::resource('users', AdminUserController::class);
@@ -42,7 +55,7 @@ Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
 
     // tracer Section
     Route::resource('tracer', AdminTracerController::class);
-    Route::get('tracer/detail/{tracer_user}', [AdminTracerController::class, 'detail'])->name('admin.tracer.detail');
+    Route::get('tracer/detail/{tracer_user}', [AdminTracerController::class, 'detail'])->name('tracer.detail');
 
     // job section
     // job statistic
@@ -56,6 +69,13 @@ Route::middleware('role:superadmin|admin')->prefix('admin')->group(function() {
     Route::get('tracer/section-d/{id}', [AdminTracerController::class, 'sectionD'])->name('admin.tracer.section-d');
     Route::get('tracer/section-e/{id}', [AdminTracerController::class, 'sectionE'])->name('admin.tracer.section-e');
     Route::get('tracer/section-f/{id}', [AdminTracerController::class, 'sectionF'])->name('admin.tracer.section-f');
+    Route::get('tracer/section/{section}/{id}', [AdminTracerController::class, 'section'])->name('tracer.section');
+
+
+
+    // new
+    Route::resource('section', AdminSectionController::class);
+    Route::resource('question', AdminQuestionController::class);
 });
 
 // for role user
@@ -87,6 +107,9 @@ Route::middleware('role:user')->prefix('user')->group(function() {
     Route::get('tracer/{slug}/section-f', [TracerController::class, 'section_f'])->name('user.tracer.section-f');
     Route::put('tracer/{id}/section-f/update', [TracerController::class, 'section_f'])->name('user.tracer.section-f.update');
 
+    Route::get('tracer/{slug}/section/{section}', [TracerController::class, 'section'])->name('user.tracer.section');
+    Route::put('tracer/{id}/section/{section}/update', [TracerController::class, 'answer'])->name('answer.update');
+
     Route::get('job', [JobController::class, 'index'])->name('user.job');
     Route::get('job/create', [JobController::class, 'create'])->name('user.job.create');
     Route::post('job/store', [JobController::class, 'store'])->name('user.job.store');
@@ -99,4 +122,4 @@ Route::middleware('role:user')->prefix('user')->group(function() {
 
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prodi;
+use App\Models\Section;
 use App\Models\SectionA;
 use App\Models\SectionB;
 use App\Models\SectionC;
@@ -14,6 +15,7 @@ use App\Models\TracerUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpParser\NodeVisitor\FirstFindingVisitor;
 
 class TracerController extends Controller
 {
@@ -29,7 +31,13 @@ class TracerController extends Controller
 
     public function tracer($slug)
     {
+        // if user not verified, redirect to home
+        if (!Auth::user()->is_verified) {
+            toastr()->error('Akun Anda Belum terverifikasi oleh admin. Silahkan tunggu beberapa saat');
+            return redirect()->back();
+        }
         $tracer = Tracer::where('slug', $slug)->first();
+        $sections = Section::with('questions')->get();
         $tracerUser = $this->createTracerUser($tracer);
         $progress = $tracerUser->progress;
 
@@ -40,7 +48,7 @@ class TracerController extends Controller
             ]);
         }
 
-        return view('user.tracer.show', compact('tracer', 'tracerUser', 'progress'));
+        return view('user.tracer.show', compact('tracer', 'tracerUser', 'progress', 'sections'));
     }
 
 
@@ -56,6 +64,50 @@ class TracerController extends Controller
         }
 
         return $tracerUser;
+    }
+
+    public function section(Request $request, $slug, $section)
+    {
+        $tracer = Tracer::where('slug', $slug)->first();
+        $section = Section::find($section);
+        $questions = $section->questions;
+        $tracerUser = $this->createTracerUser($tracer);
+        $answers = $this->createAnswers($tracerUser, $section);
+
+        return view('user.tracer.section', compact('tracer', 'tracerUser', 'section', 'questions'));
+    }
+
+    public function createAnswers($tracerUser, $section)
+    {
+        $answers = $tracerUser->answers()->where('section_id', $section->id)->get();
+        if (!$answers->count()) {
+            // foreach
+            foreach ($section->questions as $question) {
+                // firstOrUpdate answer
+                $tracerUser->answers()->firstOrCreate([
+                    'question_id' => $question->id,
+                    'section_id' => $section->id,
+                ]);
+            }
+        }
+        return $answers;
+    }
+
+    public function answer(Request $request, $id, $section)
+    {
+        // return response()->json($request->all());
+        $tracer_user = TracerUser::find($id);
+        $section = Section::find($section);
+        $questions = $section->questions;
+        foreach($questions as $question) {
+            $answer = $tracer_user->answers()->where('question_id', $question->id)->first();
+            $answer->answer = $request->input('answer_'.$question->code);
+            $answer->save();
+        }
+
+        // toastr
+        toastr()->success('Jawaban berhasil disimpan');
+        return redirect()->route('user.tracer.show', ['slug' => $tracer_user->tracer->slug]);
     }
 
     public function section_a(Request $request, $slug)

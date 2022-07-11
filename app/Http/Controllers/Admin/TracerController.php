@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Prodi;
+use App\Models\Section;
 use App\Models\SectionA;
 use App\Models\SectionB;
 use App\Models\SectionC;
@@ -91,8 +92,9 @@ class TracerController extends Controller
     {
         $tracer_user = TracerUser::findOrFail($tracer_user);
         $tracer = $tracer_user->tracer;
+        $sections = Section::withCount('questions')->get();
         // return response()->json($tracer_user);
-        return view('admin.tracer.detail', compact('tracer_user', 'tracer'));
+        return view('admin.tracer.detail', compact('tracer_user', 'tracer', 'sections'));
     }
 
     /**
@@ -154,6 +156,17 @@ class TracerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function section($section, $id)
+    {
+        $tracerUser = TracerUser::findOrFail($id);
+        $tracer = $tracerUser->tracer;  
+        $section = Section::findOrFail($section);
+        $questions = $section->questions;
+
+
+        return view('user.tracer.section', compact('tracer', 'tracerUser', 'section', 'questions'));
     }
 
     public function sectionA($id)
@@ -245,5 +258,21 @@ class TracerController extends Controller
         // return response()->json($section);
 
         return view('user.tracer.section.f', compact('tracer', 'tracerUser', 'section'));
+    }
+
+    public function publish(Request $request)
+    {
+        $tracers = Tracer::where('publish', 1)->get();
+        // update tracer to unpublished
+        foreach ($tracers as $tracer) {
+            $tracer->publish = 0;
+            $tracer->save();
+        }
+
+        $tracer = Tracer::find($request->id);
+        $tracer->update(['publish' => $request->publish]);
+
+        // return response json message
+        echo $request->publish;
     }
 }
