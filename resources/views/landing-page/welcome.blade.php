@@ -93,7 +93,7 @@
                     </p>
                 </div>
                 <div class="card-btn-space">
-                    <button class="btn btn-card text-white">Mulai Sekarang </button>
+                    <a href="{{ route('tracer-study') }}" class="btn btn-card text-white">Mulai Sekarang </a>
                 </div>
             </div>
         </div>
