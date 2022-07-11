@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Job::class, 'user_id')->latest();
     }
+
+    public function getFirstNameAttribute()
+    {
+        return explode(' ', $this->name)[0];
+    }
 }

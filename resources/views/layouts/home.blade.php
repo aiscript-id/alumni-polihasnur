@@ -518,7 +518,7 @@
                                 @auth
                                 {{-- dashboard button --}}
                                 <a href="{{ route('user') }}" class="btn btn-default btn-no-fill">
-                                    Hi, {{ Auth::user()->name }}
+                                    Hi, {{ Auth::user()->firstName }}
                                 </a>
         
                                 <a class="btn btn-fill text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -567,7 +567,7 @@
                         @auth
                         {{-- dashboard button --}}
                         <a href="{{ route('user') }}" class="btn btn-default btn-no-fill">
-                            Hi, {{ Auth::user()->name }}
+                            Hi, {{ Auth::user()->firstName }}
                         </a>
 
                         <a class="btn btn-fill text-white" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -711,7 +711,7 @@
             $('#datatable').DataTable();
         });
     </script>
-    
+
     @stack('script')
 </body>
 
