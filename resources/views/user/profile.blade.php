@@ -141,7 +141,7 @@
                                     <div class="row mb-3">
                                         <label for="prodi" class="col-md-4 col-lg-3 col-form-label">Prodi</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <select name="prodi" id="prodi" class="form-control">
+                                            <select name="prodi_id" id="prodi" class="form-control">
                                                 <option value="">Pilih Prodi</option>
                                                 @foreach ($prodi as $item)
                                                     <option value="{{ $item->id }}" {{ $user->prodi_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
