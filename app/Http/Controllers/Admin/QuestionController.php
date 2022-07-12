@@ -85,7 +85,17 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'code' => 'required|unique:questions,code,' . $id,
+            'question' => 'required',
+            'type' => 'required',
+            'optional' => 'nullable',
+        ]);
+
+        $question = Question::findOrFail($id);
+        $question->update($data);
+        toastr()->success('Question updated successfully.');
+        return redirect()->route('section.show', $question->section->id)->withInput();
     }
 
     /**
@@ -96,6 +106,10 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::findOrFail($id);
+        $section = $question->section;
+        $question->delete();
+        toastr()->success('Question deleted successfully.');
+        return redirect()->route('section.show', $section->id)->withInput();
     }
 }
