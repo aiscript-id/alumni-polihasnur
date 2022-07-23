@@ -1,7 +1,7 @@
 @extends((auth()->user()->hasRole(['admin', 'superadmin'])) ? 'layouts.admin' : 'layouts.user')
 @section('content')
     <div class="pagetitle">
-        <h1>Data Pertanyaan Tracer Studi</h1>
+        <h1>Data Pertanyaan Penelusuran Alumni</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
