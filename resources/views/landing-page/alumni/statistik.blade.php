@@ -13,12 +13,12 @@
                     <h5 class="card-title">Program Studi</h5>
                     @foreach ($prodis as $prodi)
                         {{-- button --}}
-                        <a href="{{ route('alumni.statistik', ['prodi_id' => $prodi->id]) }}" class="btn btn-primary btn-sm btn-block mb-4">
+                        <a href="{{ route('alumni.statistik', ['prodi_id' => $prodi->id]) }}" class="btn btn-primary btn-sm btn-block " style="display: block">
                             {{ $prodi->name }}
                         </a>
                         <br>
                     @endforeach
-                    <a href="{{ route('alumni.statistik') }}" class="btn btn-outline-primary btn-sm btn-block mb-4">
+                    <a href="{{ route('alumni.statistik') }}" class="btn btn-outline-primary btn-sm btn-block" style="display: block">
                         Tampilkan semua Program Studi
                     </a>
                 </div>
