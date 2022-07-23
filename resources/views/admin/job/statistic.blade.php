@@ -10,6 +10,9 @@
         </ol>
         </nav>
     </div><!-- End Page Title -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
 
     <section class="section dashboard">
         <div class="row">
@@ -51,7 +54,7 @@
                                                     {{-- <canvas id="pie-chart"></canvas> --}}
                                                     <!-- Doughnut Chart -->
                                                     <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
-                                                    <script>
+                                                    {{-- <script>
                                                         document.addEventListener("DOMContentLoaded", () => {
                                                           new Chart(document.querySelector('#doughnutChart'), {
                                                             type: 'doughnut',
@@ -78,7 +81,72 @@
                                                             }
                                                           });
                                                         });
-                                                      </script>
+                                                    </script> --}}
+                                                    <script>
+                                                        var data = [{
+                                                            data: [
+                                                                @foreach ($jobs as $job)
+                                                                    {{ $job["count"] }}{{ $loop->last ? '' : ',' }}
+                                                                @endforeach
+                                                            ],
+                                                            labels: [
+                                                                @foreach ($jobs as $job)
+                                                                    '{{ $job["name"] }}',
+                                                                @endforeach
+                                                            ],
+                                                            backgroundColor: [
+                                                                'rgb(255, 99, 132)',
+                                                                'rgb(54, 162, 235)',
+                                                                'rgb(255, 205, 86)'
+                                                            ],
+                                                            borderColor: "#fff"
+                                                        }];
+                                                
+                                                        var options = {
+                                                            tooltips: {
+                                                                enabled: true
+                                                            },
+                                                            plugins: {
+                                                                datalabels: {
+                                                                    formatter: (value, jobs) => {
+                                                
+                                                                        let sum = 0;
+                                                                        let dataArr = jobs.chart.data.datasets[0].data;
+                                                                        dataArr.map(data => {
+                                                                            sum += data;
+                                                                        });
+                                                                        // if value is 0, then don't show percentage
+                                                                        if (value == 0) {
+                                                                            return null;
+                                                                        } else {
+                                                                            let percentage = (value*100 / sum).toFixed(2)+"%";
+                                                                            return percentage;
+                                                                        }
+                                                
+                                                
+                                                                    },
+                                                                    color: '#fff',
+                                                                }
+                                                            }
+                                                        };
+                                                
+                                                
+                                                        var jobs = document.getElementById('doughnutChart').getContext('2d');
+                                                        var myChart = new Chart(jobs, {
+                                                            type: 'doughnut',
+                                                            data: {
+                                                                labels: [
+                                                                    @foreach ($jobs as $job)
+                                                                        '{{ $job["name"] }}',
+                                                                    @endforeach
+                                                                ],
+                                                                datasets: data
+                                                            },
+                                                            options: options
+                                                        });
+                                                
+                                                
+                                                    </script>
                                                     <!-- End Doughnut CHart -->
                                                 </div>
                                             </div>
@@ -94,50 +162,7 @@
         </div>
     </section>
 
-    <script>
-        var ctx = document.getElementById('pie-chart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: [
-                    ['Bekerja Sesuai Bidang', 'Bekerja Tidak Sesuai Bidang', 'Tidak Bekerja']
-                ],
-                datasets: [{
-                    label: 'Jumlah Pekerjaan Alumni',
-                    data: [
-                        [100, 20, 5]
-                    ],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-
-    </script>
+    
 
 
 

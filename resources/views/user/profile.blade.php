@@ -38,6 +38,10 @@
                             <li class="nav-item">
                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                             </li>
+                            {{-- edit photo --}}
+                            <li class="nav-item">
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-photo">Photo</button>
+                            </li>
                             <li class="nav-item">
                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
                             </li>
@@ -77,18 +81,6 @@
                                 <form action="{{ route('user.profile.update') }}" method="post" >
                                     @csrf
                                     @method('PUT')
-
-                                    <div class="row mb-3 d-none">
-                                        <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <img src="{{ $user->getAvatar }}" alt="Profile">
-                                            <div class="pt-2">
-                                                <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image">
-                                                    <i class="bi bi-upload"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="row mb-3">
                                         <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
@@ -163,6 +155,23 @@
                                         </div>
                                     </div>   
                                     
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            {{-- tab photo --}}
+                            <div class="tab-pane fade pt-3" id="profile-photo">
+                                <form action="{{ route('user.avatar.update') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="row mb-3">
+                                        <label for="avatar" class="col-md-4 col-lg-3 col-form-label">Foto</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="avatar" type="file" class="form-control" id="avatar">
+                                        </div>
+                                    </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>

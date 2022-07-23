@@ -2,6 +2,9 @@
 @section('content')
 <div class="mx-auto flex-lg-row hero">
     @include('landing-page.alumni.head')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Pekerjaan Alumni</h4>
@@ -27,8 +30,32 @@
                                 {{-- <canvas id="pie-chart"></canvas> --}}
                                 <!-- Doughnut Chart -->
                                 <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
-                                <script>
+                                {{-- <script>
+                                    
+
                                     document.addEventListener("DOMContentLoaded", () => {
+                                        var options = {
+                                            tooltips: {
+                                                enabled: false
+                                            },
+                                            plugins: {
+                                                datalabels: {
+                                                    formatter: (value, categories) => {
+
+                                                        let sum = 0;
+                                                        let dataArr = categories.chart.data.datasets[0].data;
+                                                        dataArr.map(data => {
+                                                            sum += data;
+                                                        });
+                                                        let percentage = (value*100 / sum).toFixed(2)+"%";
+                                                        return percentage;
+
+
+                                                    },
+                                                    color: '#fff',
+                                                }
+                                            }
+                                        };
                                       new Chart(document.querySelector('#doughnutChart'), {
                                         type: 'doughnut',
                                         data: {
@@ -38,7 +65,7 @@
                                             @endforeach
                                           ],
                                           datasets: [{
-                                            label: 'My First Dataset',
+                                            // label: 'My First Dataset',
                                             data: [
                                                 @foreach ($jobs as $job)
                                                     '{{ $job["count"] }}',
@@ -49,12 +76,81 @@
                                               'rgb(54, 162, 235)',
                                               'rgb(255, 205, 86)'
                                             ],
-                                            hoverOffset: 4
+                                            hoverOffset: 4,
+
                                           }]
-                                        }
+                                        },
+                                        options: options
+                                        
                                       });
                                     });
-                                  </script>
+                                </script> --}}
+
+                                <script>
+                                    var data = [{
+                                        data: [
+                                            @foreach ($jobs as $job)
+                                                {{ $job["count"] }}{{ $loop->last ? '' : ',' }}
+                                            @endforeach
+                                        ],
+                                        labels: [
+                                            @foreach ($jobs as $job)
+                                                '{{ $job["name"] }}',
+                                            @endforeach
+                                        ],
+                                        backgroundColor: [
+                                            'rgb(255, 99, 132)',
+                                            'rgb(54, 162, 235)',
+                                            'rgb(255, 205, 86)'
+                                        ],
+                                        borderColor: "#fff"
+                                    }];
+
+                                    var options = {
+                                        tooltips: {
+                                            enabled: true
+                                        },
+                                        plugins: {
+                                            datalabels: {
+                                                formatter: (value, jobs) => {
+
+                                                    let sum = 0;
+                                                    let dataArr = jobs.chart.data.datasets[0].data;
+                                                    dataArr.map(data => {
+                                                        sum += data;
+                                                    });
+                                                    // if value is 0, then don't show percentage
+                                                    if (value == 0) {
+                                                        return null;
+                                                    } else {
+                                                        let percentage = (value*100 / sum).toFixed(2)+"%";
+                                                        return percentage;
+                                                    }
+
+
+                                                },
+                                                color: '#fff',
+                                            }
+                                        }
+                                    };
+
+
+                                    var jobs = document.getElementById('doughnutChart').getContext('2d');
+                                    var myChart = new Chart(jobs, {
+                                        type: 'doughnut',
+                                        data: {
+                                            labels: [
+                                                @foreach ($jobs as $job)
+                                                    '{{ $job["name"] }}',
+                                                @endforeach
+                                            ],
+                                            datasets: data
+                                        },
+                                        options: options
+                                    });
+
+
+                                </script>
                                 <!-- End Doughnut CHart -->
                             </div>
                         </div>

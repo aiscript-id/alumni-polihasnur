@@ -85,6 +85,7 @@ Route::middleware('role:user')->prefix('user')->group(function() {
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::put('/profile', [UserController::class, 'update'])->name('user.profile.update');
     Route::put('/profile/password', [UserController::class, 'updatePassword'])->name('user.password.update');
+    Route::put('/profile/avatar', [UserController::class, 'updateAvatar'])->name('user.avatar.update');
 
     // tracer
     Route::get('tracer', [TracerController::class, 'index'])->name('user.tracer');

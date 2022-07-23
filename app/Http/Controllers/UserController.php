@@ -77,6 +77,31 @@ class UserController extends Controller
 
     }
 
+    public function updateAvatar(Request $request)
+    {
+        $user = Auth::user();
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // delete old avatar
+        if ($user->avatar) {
+            $old_avatar = public_path($user->avatar);
+            if (file_exists($old_avatar)) {
+                unlink($old_avatar);
+            }
+        }
+
+        $imageName = time() . '.' . $request->avatar->getClientOriginalExtension();
+        $request->avatar->move(public_path('images/avatar'), $imageName);
+        $user->update([
+            'avatar' => 'images/avatar/'.$imageName,
+        ]);
+
+        toastr()->success('Photo berhasil diperbarui');
+        return redirect()->route('user.profile');
+    }
+
 
     public function alumni()
     {
