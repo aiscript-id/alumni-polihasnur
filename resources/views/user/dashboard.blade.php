@@ -23,7 +23,7 @@
         </div>
 
         @if ($tracers->count() > 0) 
-        <h5 class="card-title">Tracer Study</h5>
+        <h5 class="card-title">Penelusuran Alumni</h5>
         @foreach ($tracers as $tracer)    
           <div class="card">
             <div class="card-body">
@@ -37,16 +37,16 @@
               </div>
               <p>{{ \Str::limit($tracer->description, 400, '. . .') }}</p>
 
-              {{-- button show tracer study --}}
+              {{-- button show Penelusuran Alumni --}}
               @if (@$tracer->my_tracer->id)
               <a href="{{ route('user.tracer.show', ['slug' => $tracer->slug]) }}" class="btn btn-warning">
                 <i class="fa fa-eye"></i>
-                Lanjutkan Pengisian Tracer Study
+                Lanjutkan Pengisian Penelusuran Alumni
               </a>
               @else
               <a href="{{ route('user.tracer.show', ['slug' => $tracer->slug]) }}" class="btn btn-primary">
                 <i class="fa fa-eye"></i>
-                Mulai Pengisian Tracer Study
+                Mulai Pengisian Penelusuran Alumni
               </a>
               @endif
             </div>

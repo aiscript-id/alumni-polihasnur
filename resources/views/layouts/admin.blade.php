@@ -236,16 +236,16 @@
           <a class="nav-link {{ request()->routeIs('section.*') ? 'active' : '' }}" href="{{ route('section.index') }}">
             {{-- new --}}
             <i class="bi bi-question-square"></i>
-            <span>Form Tracer Study</span>
+            <span>Form Penelusuran Alumni</span>
             {{-- <span class="badge badge-pill badge-primary ml-1">New</span> --}}
           </a>
         </li>
 
-        <li class="nav-heading">Tracer Study</li>
+        <li class="nav-heading">Penelusuran Alumni</li>
         <li class="nav-item">
           <a class="nav-link {{ request()->routeIs('tracer.*') ? 'active' : '' }}" href="{{ route('tracer.index') }}">
           <i class="bi bi-pie-chart"></i>
-          <span>Tracer Study</span>
+          <span>Penelusuran Alumni</span>
           </a>
         </li>
 

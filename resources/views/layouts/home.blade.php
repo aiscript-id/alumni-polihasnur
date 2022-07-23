@@ -507,7 +507,7 @@
                                         <a class="nav-link" href="{{ route('alumni') }}">Data Alumni</a>
                                     </li>
                                     <li class="nav-item {{ Request()->routeIs('tracer-study') ? 'active' : '' }}">
-                                        <a class="nav-link" href="{{ route('tracer-study') }}">Tracer Study</a>
+                                        <a class="nav-link" href="{{ route('tracer-study') }}">Penelusuran Alumni</a>
                                     </li>
                                     <li class="nav-item {{ Request()->routeIs('kontak') ? 'active' : '' }}">
                                         <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>
@@ -557,7 +557,7 @@
                             <a class="nav-link" href="{{ route('alumni') }}">Data Alumni</a>
                         </li>
                         <li class="nav-item {{ Request()->routeIs('tracer-study') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('tracer-study') }}">Tracer Study</a>
+                            <a class="nav-link" href="{{ route('tracer-study') }}">Penelusuran Alumni</a>
                         </li>
                         <li class="nav-item {{ Request()->routeIs('kontak') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>

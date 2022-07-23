@@ -81,7 +81,7 @@
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('user.tracer*') ? 'active' : '' }} " href="{{ route('user.tracer') }}">
           <i class="bi bi-pie-chart"></i>
-          <span>Tracer Study</span>
+          <span>Penelusuran Alumni</span>
         </a>
       </li>
       <li class="nav-item">
