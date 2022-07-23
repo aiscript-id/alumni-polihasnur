@@ -1,17 +1,17 @@
 @extends('layouts.user')
 @section('content')
   <div class="pagetitle">
-    <h1>Tracer Study</h1>
+    <h1>Penelusuran Alumni</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('user') }}">Home</a></li>
-        <li class="breadcrumb-item active">Tracer Study</li>
+        <li class="breadcrumb-item active">Penelusuran Alumni</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
 
   @if ($tracers->count() > 0) 
-    {{-- <h5 class="card-title">Tracer Study</h5> --}}
+    {{-- <h5 class="card-title">Penelusuran Alumni</h5> --}}
     @foreach ($tracers as $tracer)    
       <div class="card">
         <div class="card-body">
@@ -24,10 +24,10 @@
             </div>
           </div>
           <p class="small">{{ $tracer->tracer->description }}</p>
-          {{-- button show tracer study --}}
+          {{-- button show Penelusuran Alumni --}}
           @if ($tracer->progress == 100)
             {{-- alert --}}
-            <div class="alert alert-success small" role="alert"> Anda telah menyelesaikan Tracer Study ini pada {{ $tracer->getSubmitDate }}</div>
+            <div class="alert alert-success small" role="alert"> Anda telah menyelesaikan Penelusuran Alumni ini pada {{ $tracer->getSubmitDate }}</div>
           @else
             <p class="card-text small">Progress</p>
             <div class="progress mb-4">
@@ -39,12 +39,12 @@
           @if (@$tracer->tracer->my_tracer->id)
           <a href="{{ route('user.tracer.show', ['slug' => $tracer->tracer->slug]) }}" class="btn btn-{{ ($tracer->progress == 100) ? 'outline-success' : 'warning' }}">
             <i class="fa fa-eye"></i>
-            {{ ($tracer->progress == 100) ? 'Lihat Tracer Study' : 'Lanjutkan Pengisian Tracer Study' }}
+            {{ ($tracer->progress == 100) ? 'Lihat Penelusuran Alumni' : 'Lanjutkan Pengisian Penelusuran Alumni' }}
           </a>
           @else
           <a href="{{ route('user.tracer.show', ['slug' => $tracer->tracer->slug]) }}" class="btn btn-primary">
             <i class="fa fa-eye"></i>
-            Mulai Pengisian Tracer Study
+            Mulai Pengisian Penelusuran Alumni
           </a>
           @endif
         </div>
@@ -58,8 +58,8 @@
           <div class="col-md-4 text-center">
             <img src="{{ asset('assets/images/selection.svg') }}" alt="tracer" class="img-fluid p-4">
             {{-- belum ada data --}}
-            <h5 class="alert-heading mt-3">Belum ada Tracer Study</h5>
-            <p class="">Silahkan lakukan pengisian Tracer Study untuk mengikuti kuisioner</p>
+            <h5 class="alert-heading mt-3">Belum ada Penelusuran Alumni</h5>
+            <p class="">Silahkan lakukan pengisian Penelusuran Alumni untuk mengikuti kuisioner</p>
           </div>
         </div>
       </div>

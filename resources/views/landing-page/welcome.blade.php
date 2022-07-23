@@ -18,7 +18,7 @@
             <div
                 class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
                 <a href="{{ route('tracer-study') }}" class="btn d-inline-flex mb-md-0 btn-try text-white">
-                    Tracer Study
+                    Penelusuran Alumni
                 </a>
             </div>
         </div>
@@ -86,10 +86,10 @@
                 </div>
                 <div class="flex-grow-1 text-lg-start text-center card-text">
                     <h3 class="card-title">
-                        Kerjakan Tracer Study Alumni
+                        Kerjakan Penelusuran Alumni Alumni
                     </h3>
                     <p class="card-caption">
-                        Dengan fitur ini, anda dapat mengerjakan tracer study alumni Politeknik Hasnur dengan mudah.
+                        Dengan fitur ini, anda dapat mengerjakan Penelusuran Alumni alumni Politeknik Hasnur dengan mudah.
                     </p>
                 </div>
                 <div class="card-btn-space">

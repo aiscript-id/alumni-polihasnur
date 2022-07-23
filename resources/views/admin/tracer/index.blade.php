@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('content')
     <div class="pagetitle">
-        <h1>Tracer Study</h1>
+        <h1>Penelusuran Alumni</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active">Tracer Study</li>
+            <li class="breadcrumb-item active">Penelusuran Alumni</li>
         </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -24,7 +24,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Tracer Study</h4>
+                        <h4 class="card-title">Penelusuran Alumni</h4>
                         <div class="table-responsive">
                             <table class="table nowrap datatable" id="datatable">
                                 <thead>
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <label for="name">Nama</label>
                             <input type="text" name="name" id="name" class="form-control" placeholder="Nama" required>
-                            <small class="form-text">Berikan nama yang berbeda pada tiap Tracer Study</small>
+                            <small class="form-text">Berikan nama yang berbeda pada tiap Penelusuran Alumni</small>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -145,7 +145,7 @@
                             <div class="form-group">
                                 <label for="name">Nama</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Nama" value="{{ $tracer->name }}" required>
-                                <small class="form-text">Berikan nama yang berbeda pada tiap Tracer Study</small>
+                                <small class="form-text">Berikan nama yang berbeda pada tiap Penelusuran Alumni</small>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -192,13 +192,13 @@
                 },
                 success: function(data) {
                 if (data == 1) {
-                    toastr.success('Tracer Study published');
+                    toastr.success('Penelusuran Alumni published');
                     // reload page with delay
                     setTimeout(function(){
                         location.reload();
                     }, 1000);
                 } else {
-                    toastr.success('Tracer Study unpublished');
+                    toastr.success('Penelusuran Alumni unpublished');
                 }
                 }
             });

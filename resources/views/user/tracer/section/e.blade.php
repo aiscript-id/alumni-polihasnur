@@ -1,11 +1,11 @@
 @extends((auth()->user()->hasRole('user')) ? 'layouts.user' : 'layouts.admin')
 @section('content')
     <div class="pagetitle">
-        <h1>Tracer Study</h1>
+        <h1>Penelusuran Alumni</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('user') }}">Home</a></li>
-            <li class="breadcrumb-item active">Tracer Study</li>
+            <li class="breadcrumb-item active">Penelusuran Alumni</li>
         </ol>
         </nav>
     </div><!-- End Page Title -->

@@ -50,7 +50,7 @@
               </div>
               <p>{{ \Str::limit($job->description, 400, '. . .') }}</p>
   
-              {{-- button show tracer study --}}
+              {{-- button show Penelusuran Alumni --}}
               <a href="{{ route('user.job.edit', ['id' => $job->id]) }}" class="btn btn-primary">
                 <i class="fa fa-eye"></i>
                 Lihat Detail

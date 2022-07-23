@@ -1,11 +1,11 @@
 @extends('layouts.user')
 @section('content')
   <div class="pagetitle">
-    <h1>Tracer Study</h1>
+    <h1>Penelusuran Alumni</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('user') }}">Home</a></li>
-        <li class="breadcrumb-item active">Tracer Study</li>
+        <li class="breadcrumb-item active">Penelusuran Alumni</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -21,7 +21,7 @@
             <p>{{ $tracer->description }}</p>
             {{-- alert --}}
             <div class="alert alert-warning small">
-              Batas waktu pengisian tracer study ini adalah <b>{{ $tracer->getDate }}</b>
+              Batas waktu pengisian Penelusuran Alumni ini adalah <b>{{ $tracer->getDate }}</b>
             </div>
           </div>
         </div>
